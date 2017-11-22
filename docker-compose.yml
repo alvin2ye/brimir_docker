@@ -1,0 +1,24 @@
+version: "2"
+
+services:
+  mysql:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - "mysql_data:/var/lib/mysql"
+  main:
+    build: .
+    volumes:
+      - ".:/app"
+      - "./nginx.conf:/etc/nginx/conf.d/default.conf"
+      - "./database.yml:/app/brimir-0.7.3/config/database.yml"
+      - "local_bundle:/usr/local/bundle"
+    depends_on:
+      - mysql
+    environment:
+      - RAILS_ENV=production
+volumes:
+  mysql_data:
+  local_bundle:
+

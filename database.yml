@@ -1,0 +1,18 @@
+default: &default
+  adapter: mysql2
+  collation: utf8mb4_bin
+  database: app_prd
+  encoding: utf8mb4
+  host: mysql
+  password: root
+  pool: 5
+  username: root
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default
