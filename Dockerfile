@@ -11,7 +11,12 @@ RUN set -ex \
   && rm -rf 0.7.3.zip \
   && cd brimir \
   && bundle install \
-  && sed -i "s/<%= ENV\[\"SECRET_KEY_BASE\"\] %>/`bin/rake secret`/g" config/secrets.yml \
-  && copy database.yml config/database.yml \
-  && copy nginx.conf /etc/nginx/conf.d/default.conf \
+  && sed -i "s/<%= ENV\[\"SECRET_KEY_BASE\"\] %>/`bin/rake secret`/g" config/secrets.yml
+
+COPY database.yml /opt/brimir/config/database.yml
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY app.conf /etc/supervisor/conf.d/app.conf
+
+RUN set -ex \
+  && cd /opt/brimir \
   && bin/rake db:create db:schema:load assets:precompile
