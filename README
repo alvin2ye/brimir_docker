@@ -1,7 +1,12 @@
+# README
 
-# 修改域名
+1. change SECRET_KEY_BASE in docker-compose.yml
 
+2. fix domain & create init user
 
 docker-compose exec main bash
 
-bin/rails runner "Tenant.first.update(domain: \"yourdomain.com\")"
+rails c
+Tenant.first.update(domain: "yourdomain.com")
+User.create!({ email: 'admin@admin.com', password: 'password', password_confirmation: 'password', agent: true })
+

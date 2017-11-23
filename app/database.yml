@@ -3,10 +3,10 @@ default: &default
   collation: utf8mb4_bin
   database: app_prd
   encoding: utf8mb4
-  host: mysql
-  password: root
+  host: <%= ENV.fetch("MYSQL_HOST") { "mysql" } %>
+  password: <%= ENV.fetch("MYSQL_PASSWORD") { "root" } %>
   pool: 5
-  username: root
+  username: <%= ENV.fetch("MYSQL_USERNAME") { "root" } %>
 
 development:
   <<: *default
