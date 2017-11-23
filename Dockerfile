@@ -15,8 +15,5 @@ RUN set -ex \
 
 COPY database.yml /opt/brimir/config/database.yml
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY boot.bash /opt/brimir/boot.bash
 COPY app.conf /etc/supervisor/conf.d/app.conf
-
-RUN set -ex \
-  && cd /opt/brimir \
-  && bin/rake db:create db:schema:load assets:precompile

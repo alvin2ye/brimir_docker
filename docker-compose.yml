@@ -18,6 +18,9 @@ services:
       - mysql
     environment:
       - RAILS_ENV=production
+      - DOMAIN=209.9.106.239
+    ports:
+      - 80:80
 volumes:
   mysql_data:
   local_bundle:

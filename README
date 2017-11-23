@@ -1,0 +1,7 @@
+
+# 修改域名
+
+
+docker-compose exec main bash
+
+bin/rails runner "Tenant.first.update(domain: \"yourdomain.com\")"
